@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Today's Date</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* 背景を黒にして視認性アップ */
+            color: #fff; /* 文字を白に */
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        #date {
+            font-size: 15vw; /* 画面幅に合わせて文字サイズを自動調整 */
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+
+    <script>
+        function updateDate() {
+            const now = new Date();
+            const y = now.getFullYear();
+            const m = now.getMonth() + 1;
+            const d = now.getDate();
+            // 「2024年 3月 25日」のような形式で表示
+            document.getElementById('date').innerHTML = `${y}年<br>${m}月${d}日`;
+        }
+        updateDate();
+    </script>
+</body>
+</html>
