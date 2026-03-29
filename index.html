@@ -9,6 +9,7 @@ body{
   background:black;
   color:white;
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
   height:100vh;
@@ -20,16 +21,18 @@ body{
 
 <body>
 
-<div id="date"></div>
+<div id="year"></div>
+<div id="md"></div>
 
 <script>
 const d = new Date();
-const y = d.getFullYear();
-const m = d.getMonth()+1;
-const day = d.getDate();
 
-document.getElementById("date").innerText =
-y + "/" + m + "/" + day;
+const y = d.getFullYear();
+const m = String(d.getMonth()+1).padStart(2,'0');
+const day = String(d.getDate()).padStart(2,'0');
+
+document.getElementById("year").innerText = y;
+document.getElementById("md").innerText = m + "/" + day;
 </script>
 
 </body>
