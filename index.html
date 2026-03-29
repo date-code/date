@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Today</title>
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-size:18vw;
+  font-family:sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<div id="date"></div>
+
+<script>
+const d = new Date();
+const y = d.getFullYear();
+const m = d.getMonth()+1;
+const day = d.getDate();
+
+document.getElementById("date").innerText =
+y + "/" + m + "/" + day;
+</script>
+
+</body>
+</html>
