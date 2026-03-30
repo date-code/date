@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <title>Today</title>
 
-<!-- スマホ用フルスクリーン設定 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -12,17 +11,13 @@
 <style>
 body{
   margin:0;
-  background:black;
   color:white;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   height:100vh;
-
-  /* フォント1.5倍 */
-  font-size:27vw;
-
+  font-size:32vw;
   font-family:sans-serif;
 }
 </style>
@@ -34,14 +29,42 @@ body{
 <div id="md"></div>
 
 <script>
-const d = new Date();
 
-const y = d.getFullYear();
-const m = String(d.getMonth()+1).padStart(2,'0');
-const day = String(d.getDate()).padStart(2,'0');
+function updateDate(){
 
-document.getElementById("year").innerText = y;
-document.getElementById("md").innerText = m + "/" + day;
+  const d = new Date();
+
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+
+  document.getElementById("year").innerText = y;
+  document.getElementById("md").innerText = m + "/" + day;
+
+  const weekday = d.getDay();
+
+  const colors = [
+    "#e60026", // 日
+    "#000000", // 月
+    "#ff7f00", // 火
+    "#00bfff", // 水
+    "#228b22", // 木
+    "#d4af37", // 金
+    "#003f8c"  // 土
+  ];
+
+  document.body.style.backgroundColor = colors[weekday];
+}
+
+/* 初回 */
+updateDate();
+
+/* 1分更新 */
+setInterval(updateDate, 60000);
+
+/* 画面タップで再描画 */
+document.body.addEventListener("click", updateDate);
+
 </script>
 
 </body>
