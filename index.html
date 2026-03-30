@@ -2,14 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Color Test</title>
+<title>Today</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 
 <style>
 body{
   margin:0;
   color:white;
+
   display:flex;
   flex-direction:column;
 
@@ -17,6 +20,7 @@ body{
   justify-content:flex-end;
 
   align-items:center;
+
   height:100vh;
 
   /* 下に少し余白 */
@@ -30,38 +34,42 @@ body{
 
 <body>
 
-<div id="year">2026</div>
-<div id="md">03/29</div>
+<div id="year"></div>
+<div id="md"></div>
 
 <script>
 
-const colors = [
-  "#e60026", // 日
-  "#000000", // 月
-  "#ff7f00", // 火
-  "#00bfff", // 水
-  "#228b22", // 木
-  "#d4af37", // 金
-  "#003f8c"  // 土
-];
+function updateDate(){
 
-let index = 0;
+  const d = new Date();
 
-function changeColor(){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
 
-  document.body.style.backgroundColor = colors[index];
+  document.getElementById("year").innerText = y;
+  document.getElementById("md").innerText = m + "/" + day;
 
-  index++;
-  if(index >= colors.length){
-    index = 0;
-  }
+  const weekday = d.getDay();
+
+  const colors = [
+    "#e60026",
+    "#000000",
+    "#ff7f00",
+    "#00bfff",
+    "#228b22",
+    "#d4af37",
+    "#003f8c"
+  ];
+
+  document.body.style.backgroundColor = colors[weekday];
 }
 
-/* 初期 */
-changeColor();
+updateDate();
 
-/* タップで変更 */
-document.body.addEventListener("click", changeColor);
+setInterval(updateDate, 60000);
+
+document.body.addEventListener("click", updateDate);
 
 </script>
 
