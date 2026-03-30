@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Date Image</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+  margin:0;
+  background:#222;
+  color:white;
+  font-family:sans-serif;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  height:100vh;
+}
+
+button{
+  font-size:24px;
+  padding:20px 40px;
+  border:none;
+  border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<button onclick="generate()">今日の画像を作る</button>
+
+<script>
+
+function generate(){
+
+  const size = 1024;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+
+  const ctx = canvas.getContext("2d");
+
+  const d = new Date();
+
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+
+  const weekday = d.getDay();
+
+  const colors = [
+    "#e60026",
+    "#000000",
+    "#ff7f00",
+    "#00bfff",
+    "#228b22",
+    "#d4af37",
+    "#003f8c"
+  ];
+
+  ctx.fillStyle = colors[weekday];
+  ctx.fillRect(0,0,size,size);
+
+  ctx.fillStyle = "white";
+  ctx.textAlign = "center";
+
+  ctx.font = "bold 180px sans-serif";
+  ctx.fillText(y, size/2, 380);
+
+  ctx.font = "bold 260px sans-serif";
+  ctx.fillText(m + "/" + day, size/2, 650);
+
+  const link = document.createElement("a");
+  link.download = "date.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+</script>
+
+</body>
+</html>
