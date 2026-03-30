@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Week Color Test</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+  margin:0;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:sans-serif;
+}
+
+#weekday{
+  font-size:12vw;
+}
+
+#year{
+  font-size:32vw;
+  line-height:0.9;
+}
+
+#md{
+  font-size:32vw;
+  line-height:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div id="weekday"></div>
+<div id="year">2026</div>
+<div id="md">03/29</div>
+
+<script>
+
+const week = [
+  "SUN",
+  "MON",
+  "TUE",
+  "WED",
+  "THU",
+  "FRI",
+  "SAT"
+];
+
+const colors = [
+  "#e60026", // 日
+  "#000000", // 月
+  "#ff7f00", // 火
+  "#00bfff", // 水
+  "#228b22", // 木
+  "#d4af37", // 金
+  "#003f8c"  // 土
+];
+
+let index = 0;
+
+function changeDay(){
+
+  document.body.style.backgroundColor = colors[index];
+  document.getElementById("weekday").innerText = week[index];
+
+  index++;
+
+  if(index >= week.length){
+    index = 0;
+  }
+}
+
+changeDay();
+
+document.body.addEventListener("click", changeDay);
+
+</script>
+
+</body>
+</html>
