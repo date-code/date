@@ -72,14 +72,19 @@ function generate(){
   ctx.fillStyle = "white";
   ctx.textAlign = "center";
 
-  ctx.font = "bold 180px sans-serif";
+  // yyyy（20%アップ）
+  ctx.font = "bold 216px sans-serif";
   ctx.fillText(y, size/2, 380);
 
-  ctx.font = "bold 260px sans-serif";
-  ctx.fillText(m + "/" + day, size/2, 650);
+  // mm/dd（20%アップ）
+  ctx.font = "bold 312px sans-serif";
+  ctx.fillText(m + "/" + day, size/2, 700);
 
   const link = document.createElement("a");
-  link.download = "date.png";
+
+  // ファイル名 yyyy_mm_dd.png
+  link.download = y + "_" + m + "_" + day + ".png";
+
   link.href = canvas.toDataURL("image/png");
   link.click();
 }
