@@ -2,11 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Today</title>
+<title>Color Test</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
 
 <style>
 body{
@@ -14,10 +12,17 @@ body{
   color:white;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+
+  /* 下寄せ */
+  justify-content:flex-end;
+
   align-items:center;
   height:100vh;
-  font-size:40vw;
+
+  /* 下に少し余白 */
+  padding-bottom:10vh;
+
+  font-size:38vw;
   font-family:sans-serif;
 }
 </style>
@@ -25,45 +30,38 @@ body{
 
 <body>
 
-<div id="year"></div>
-<div id="md"></div>
+<div id="year">2026</div>
+<div id="md">03/29</div>
 
 <script>
 
-function updateDate(){
+const colors = [
+  "#e60026", // 日
+  "#000000", // 月
+  "#ff7f00", // 火
+  "#00bfff", // 水
+  "#228b22", // 木
+  "#d4af37", // 金
+  "#003f8c"  // 土
+];
 
-  const d = new Date();
+let index = 0;
 
-  const y = d.getFullYear();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
+function changeColor(){
 
-  document.getElementById("year").innerText = y;
-  document.getElementById("md").innerText = m + "/" + day;
+  document.body.style.backgroundColor = colors[index];
 
-  const weekday = d.getDay();
-
-  const colors = [
-    "#e60026", // 日
-    "#000000", // 月
-    "#ff7f00", // 火
-    "#00bfff", // 水
-    "#228b22", // 木
-    "#d4af37", // 金
-    "#003f8c"  // 土
-  ];
-
-  document.body.style.backgroundColor = colors[weekday];
+  index++;
+  if(index >= colors.length){
+    index = 0;
+  }
 }
 
-/* 初回 */
-updateDate();
+/* 初期 */
+changeColor();
 
-/* 1分更新 */
-setInterval(updateDate, 60000);
-
-/* 画面タップで再描画 */
-document.body.addEventListener("click", updateDate);
+/* タップで変更 */
+document.body.addEventListener("click", changeColor);
 
 </script>
 
